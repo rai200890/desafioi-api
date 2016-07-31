@@ -1,0 +1,2 @@
+class IssueReason < ApplicationRecord
+end
