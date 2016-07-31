@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20160731201914) do
   create_table "issues", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "issue_type_id"
     t.integer  "issue_reason_id"
-    t.string   "body"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.text     "body",            limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["issue_reason_id"], name: "index_issues_on_issue_reason_id", using: :btree
     t.index ["issue_type_id"], name: "index_issues_on_issue_type_id", using: :btree
   end

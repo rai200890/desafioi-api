@@ -7,6 +7,7 @@ gem 'puma', '~> 3.0'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'mysql2'
+gem 'activerecord-import', '~> 0.11.0'
 
 group :development, :test do
   gem 'byebug'

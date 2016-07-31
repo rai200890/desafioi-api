@@ -3,7 +3,7 @@ class CreateIssues < ActiveRecord::Migration[5.0]
     create_table :issues do |t|
       t.references :issue_type, index: true
       t.references :issue_reason, index: true
-      t.string :body
+      t.text :body
       t.timestamps
     end
   end
