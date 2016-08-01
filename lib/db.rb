@@ -1,6 +1,4 @@
 require "logger"
-require "rails"
-require "logger"
 
 module DB
 
@@ -13,7 +11,7 @@ module DB
       DB::LOGGER.error "#{failed_instances} #{model.model_name} couldn't be created" if failed_instances > 0
       result
     rescue => e
-      puts e
+      DB::LOGGER.error e
     end
   end
 
