@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801002851) do
+ActiveRecord::Schema.define(version: 20160801015252) do
+
+  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "id_card_code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "issue_reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -27,6 +36,8 @@ ActiveRecord::Schema.define(version: 20160801002851) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "state_id"
+    t.integer  "customer_id"
+    t.index ["customer_id"], name: "index_issues_on_customer_id", using: :btree
     t.index ["issue_reason_id"], name: "index_issues_on_issue_reason_id", using: :btree
     t.index ["issue_type_id"], name: "index_issues_on_issue_type_id", using: :btree
     t.index ["state_id"], name: "index_issues_on_state_id", using: :btree
@@ -37,5 +48,6 @@ ActiveRecord::Schema.define(version: 20160801002851) do
     t.string "abbreviation"
   end
 
+  add_foreign_key "issues", "customers"
   add_foreign_key "issues", "states"
 end
