@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731201914) do
+ActiveRecord::Schema.define(version: 20160801002851) do
 
   create_table "issue_reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20160731201914) do
     t.text     "body",            limit: 65535
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "state_id"
     t.index ["issue_reason_id"], name: "index_issues_on_issue_reason_id", using: :btree
     t.index ["issue_type_id"], name: "index_issues_on_issue_type_id", using: :btree
+    t.index ["state_id"], name: "index_issues_on_state_id", using: :btree
   end
 
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,4 +37,5 @@ ActiveRecord::Schema.define(version: 20160731201914) do
     t.string "abbreviation"
   end
 
+  add_foreign_key "issues", "states"
 end
