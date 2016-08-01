@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      issue:
+        one: Chamado
+        other: Chamados
+      issue_type:
+        one: Tipo de Chamado
+        other: Tipos de Chamado
+      issue_reason:
+        one: Motivo de Chamado
+        other: Motivos de Chamado
+      state:
+        one: Estado
+        other: Estados
