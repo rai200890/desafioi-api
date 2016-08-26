@@ -5,4 +5,13 @@ class IssuesController < ApplicationController
     render json: @issues
   end
 
+  def create
+    @issue = Issue.new
+    if @issue.save
+     render json: @issue	
+    else
+     render json: @issue.errors
+    end	    
+  end	  
+
 end

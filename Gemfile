@@ -6,8 +6,7 @@ gem 'puma', '~> 3.0'
 gem 'rack-cors'
 gem 'mysql2'
 gem 'activerecord-import', '~> 0.11.0'
-
-gem 'jsonapi-resources', '~> 0.8.0.beta1'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'byebug'
@@ -21,6 +20,7 @@ group :development do
 end
 
 group :test do
+  gem "factory_girl_rails", "~> 4.0"
   gem 'shoulda-matchers', '~> 3.1'
 end
 
