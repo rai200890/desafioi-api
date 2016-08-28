@@ -1,11 +1,6 @@
 module PaginationConcern
   extend ActiveSupport::Concern
 
-  included do
-      has_scope :page, default: 1
-      has_scope :per, default: 15
-  end
-
   def pagination_info(resource)
     {
       current_page: resource.current_page,
