@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '~> 5.0.0'
-gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
-gem 'active_model_serializers', '~> 0.10.0'
 gem 'mysql2'
 gem 'activerecord-import', '~> 0.11.0'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'kaminari'
+gem 'has_scope'
 
 group :development, :test do
   gem 'byebug'
@@ -21,6 +22,8 @@ group :development do
 end
 
 group :test do
+  gem 'faker'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
