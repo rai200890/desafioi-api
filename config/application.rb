@@ -15,6 +15,7 @@ require "rails/test_unit/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
 
 module DesafioiApi
   class Application < Rails::Application
@@ -31,5 +32,11 @@ module DesafioiApi
     config.api_only = true
     config.i18n.default_locale = :'pt-BR'
     config.autoload_paths << "#{Rails.root}/lib"
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins (ENV['CORS_ACCEPT_ORIGINS'] || '')
+          resource '*', headers: :any, methods: [:get, :post, :options]
+        end
+      end
   end
 end

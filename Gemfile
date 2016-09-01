@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'rails', '~> 5.0.0'
 gem 'puma', '~> 3.0'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'mysql2'
 gem 'activerecord-import', '~> 0.11.0'
 gem 'active_model_serializers', '~> 0.10.0'
