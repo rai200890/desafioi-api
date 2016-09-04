@@ -9,10 +9,11 @@ class Issue < ApplicationRecord
   validates :issue_reason_id, presence: true
   validates :body, presence: true
 
-  scope :group_by_creation_and_state, -> { group('issues.created_at', 'issues.state_id') }
-  scope :sort_by, -> field, order {
-    with_details.group_by_creation_and_state.order("#{get_sort_field(field)} #{get_sort_order(order)}")
-  }
+  scope :sort_by, -> (*sorters) do
+    sorters = sorters.map{|field, sort_order| "#{get_sort_field(field)} #{get_sort_order(sort_order)}"}
+    with_details.order(sorters)
+  end
+
   scope :with_details, -> { eager_load(:customer, :issue_type, :issue_reason, :state) }
 
   private
@@ -28,8 +29,8 @@ class Issue < ApplicationRecord
     FIELDS[field.downcase.to_sym] || FIELDS[:created_at]
   end
 
-  def self.get_sort_order(order)
-    order.to_s.upcase.in?(["ASC", "DESC"]) ? order.upcase : "ASC"
+  def self.get_sort_order(sort_order)
+    sort_order.to_s.upcase.in?(["ASC", "DESC"]) ? sort_order.to_s.upcase : "ASC"
   end
 
 end
