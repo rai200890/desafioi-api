@@ -3,3 +3,5 @@ log/*
 .env.development
 .env.test
 .byebug_history
+.env
+coverage/*
