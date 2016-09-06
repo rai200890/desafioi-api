@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   include PaginationConcern
 
-  has_scope :by_name_or_id_card_code_or_phone
+  has_scope :by_id_or_name_or_email_or_phone
   has_scope :page, default: 1
   has_scope :per, default: 15
 

@@ -26,7 +26,7 @@ RSpec.describe CustomersController, type: :controller do
                                            'total_count')
     end
     it 'should filter by text' do
-      get :index, {by_name_or_id_card_code_or_phone: Customer.last.name}
+      get :index, {by_id_or_name_or_email_or_phone: Customer.last.name}
       json = JSON.parse(response.body)
       expect(response).to be_success
     end
