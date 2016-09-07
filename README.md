@@ -1,13 +1,16 @@
-# desafioi-olx-api
+# sac-api
+
+[![Build Status](https://travis-ci.org/rai200890/sac-api.svg?branch=improvement%2Fadd_travis_ci_config)](https://travis-ci.org/rai200890/sac-api)
+[![Code Climate](https://codeclimate.com/github/rai200890/sac-api/badges/gpa.svg)](https://codeclimate.com/github/rai200890/sac-api)
 
   Rails API to create and view issues
 
 ##Setup
 
 ```bash
-  make setup_rvm #install rvm and create gemset
+  make setup-rvm #install rvm and create gemset
   make install #install project's dependencies in this gemset
-  make setup_db #create database schema
+  make setup-db #create database schema
 ```
 
 ##Run
@@ -19,6 +22,6 @@
 ##Test
 
 ```bash
-  make setup_test_db #create test database schema
+  make setup-test-db #create test database schema
   make test #run project's unit tests
 ```
