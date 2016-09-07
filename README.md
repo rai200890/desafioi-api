@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rai200890/sac-api.svg?branch=improvement%2Fadd_travis_ci_config)](https://travis-ci.org/rai200890/sac-api)
 [![Code Climate](https://codeclimate.com/github/rai200890/sac-api/badges/gpa.svg)](https://codeclimate.com/github/rai200890/sac-api)
+[![Test Coverage](https://codeclimate.com/github/rai200890/sac-api/badges/coverage.svg)](https://codeclimate.com/github/rai200890/sac-api/coverage)
 
   Rails API to create and view issues
 
