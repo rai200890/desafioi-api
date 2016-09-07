@@ -9,7 +9,7 @@ development:
   password: <%= ENV["DB_PASSWORD"] %>
 test:
   <<: *default
-  database: <%= ENV["DB_NAME"] %>
+  database: <%= ENV["DB_NAME_TEST"] %>
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
 

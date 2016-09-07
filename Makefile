@@ -11,13 +11,13 @@ test: #run unit tests
 	bundle exec rspec
 
 setup-db: #create database schema and populate tables
-	bundle exec rake db:create #create database schema
-	bundle exec rake db:migrate #run database migrations
-	bundle exec rake db:seed #populate tables
+	bundle exec rails db:create #create database schema
+	bundle exec rails db:migrate #run database migrations
+	bundle exec rails db:seed #populate tables
 
 setup-test-db: #create test database schema
-	bundle exec rake db:create RAILS_ENV=test
-	bundle exec rake db:migrate RAILS_ENV=test
+	rails db:create RAILS_ENV=test 
+	rails db:migrate RAILS_ENV=test
 
 setup: install setup_db #setup project
 
