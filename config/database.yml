@@ -1,14 +1,12 @@
 default: &default
   adapter: mysql2
-  pool: 5
-  timeout: 5000
+  encoding: utf8
 
 development:
   <<: *default
   database: <%= ENV["DB_NAME"] %>
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
-
 test:
   <<: *default
   database: <%= ENV["DB_NAME"] %>
