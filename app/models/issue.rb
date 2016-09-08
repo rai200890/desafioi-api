@@ -16,6 +16,8 @@ class Issue < ApplicationRecord
 
   scope :with_details, -> { eager_load(:customer, :issue_type, :issue_reason, :state) }
 
+  scope :group_by_date_and_state, -> {Issue.group(:created_at, :state_id).order(created_at: :desc)}
+
   private
 
   FIELDS = {
