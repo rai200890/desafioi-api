@@ -5,7 +5,7 @@ class IssuesController < ApplicationController
   has_scope :per, default: 15
 
   def index
-    @issues = apply_scopes(Issue.group_by_date_and_state.order(created_at: :desc))
+    @issues = apply_scopes(Issue.group_by_date_and_state)
     render json: @issues, meta: pagination_info(@issues)
   end
 
@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
     if @issue.save
       render json: @issue, status: :created
     else
-      render json: @issue.errors.full_messages, status: :unprocessable_entity
+      render json: {errors: @issue.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
