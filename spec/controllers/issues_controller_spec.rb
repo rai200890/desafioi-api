@@ -35,7 +35,7 @@ RSpec.describe IssuesController, type: :controller do
     let(:state) { FactoryGirl.create(:state) }
     context 'Valid params' do
       it 'should create a issue' do
-        post :create, params: {issue: {
+        post :create, params: { issue: {
           body: 'body',
           issue_type_id: issue_type.id,
           issue_reason_id: issue_reason.id,
@@ -43,19 +43,15 @@ RSpec.describe IssuesController, type: :controller do
           state_id: state.id
         }
       }
-
-        expect(response).to have_http_status(:created)
+      expect(response).to have_http_status(:created)
       end
     end
-    context 'Invalid params' do
+  context 'Invalid params' do
       it 'should return errors' do
-        post :create, params: {issue: {
-          body: 'body'
-        }
-      }
+        post :create, params: {issue: {body: 'body'}}
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.body).to_not be_empty
       end
-    end
+  end
   end
 end
