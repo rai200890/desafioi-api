@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IssueTypesController, type: :controller do
+RSpec.describe Api::V1::IssueTypesController, type: :controller do
   before :each do
     FactoryGirl.create_list(:issue_type, 5)
     get :index
