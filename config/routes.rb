@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :states, only: :index
   resources :issue_reasons, only: :index
   resources :issue_types, only: :index
+  resources :customers, only: :index
 
 end
