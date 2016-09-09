@@ -14,5 +14,5 @@ class Issue < ApplicationRecord
   scope :group_by_date_and_state, -> do
     with_details.order('states.name asc', created_at: :desc)
   end
-
+  
 end
