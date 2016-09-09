@@ -54,4 +54,19 @@ RSpec.describe Api::V1::IssuesController, type: :controller do
       end
   end
   end
+  describe '#show' do
+    context 'given an id of a existing issue' do
+      let!(:issue) { FactoryGirl.create(:issue)}
+      it 'should return that issue' do
+        get :show, params: {id: issue.id}
+        expect(response).to have_http_status(:ok)
+      end
+    end
+    context 'given an id of a non existing issue' do
+      it 'should return errors' do
+        get :show, params: {id: 1}
+        expect(response).to have_http_status(:not_found)
+      end
+  end
+  end
 end

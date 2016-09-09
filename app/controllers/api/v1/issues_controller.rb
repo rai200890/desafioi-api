@@ -7,7 +7,7 @@ module Api::V1
 
     def index
       @issues = apply_scopes(Issue.group_by_date_and_state)
-      render json: @issues, meta: pagination_info(@issues), content_type: :json
+      render json: @issues, meta: pagination_info(@issues)
     end
 
     def create
@@ -16,6 +16,15 @@ module Api::V1
         render json: @issue, status: :created
       else
         render json: {errors: @issue.errors.full_messages}, status: :unprocessable_entity
+      end
+    end
+
+    def show
+      @issue = Issue.where(id: params[:id]).first
+      if @issue
+        render json: @issue
+      else
+        render :nothing, status: :not_found
       end
     end
 
