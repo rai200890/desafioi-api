@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CustomersController, type: :controller do
+RSpec.describe Api::V1::CustomersController, type: :controller do
   describe '#index' do
     before :each do
       FactoryGirl.create_list(:customer, 5)

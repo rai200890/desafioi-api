@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IssuesController, type: :controller do
+RSpec.describe Api::V1::IssuesController, type: :controller do
   describe '#index' do
     context 'issues > 0' do
       before :each do
