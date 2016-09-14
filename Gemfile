@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.0.0.1'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'mysql2'
@@ -26,7 +26,8 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'rake'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
