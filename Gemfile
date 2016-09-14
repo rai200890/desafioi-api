@@ -26,7 +26,8 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'rake'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
