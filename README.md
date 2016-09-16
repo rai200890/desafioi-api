@@ -6,12 +6,26 @@
 
   Rails API to create and view issues
 
-##Setup
+##Install
 
+### OS Dependencies(Ubuntu)
+
+```bash
+make install-os-deps #install RVM, and other required os packages
+```
+
+####MYSQL
+```bash
+sudo apt-get update
+sudo apt-get install -y mysql-server
+```
+
+###Project's dependencies(Using RVM)
 ```bash
   make setup-rvm #install rvm and create gemset
   make install #install project's dependencies in this gemset
-  make setup-db #create database schema
+  make setup-env #create .env file to load env var in development, make sure to change it before running setup
+  make setup-db #create database schema, run database migrations in development
 ```
 
 ##Run
@@ -20,9 +34,13 @@
   make run #run server at http://localhost:3000
 ```
 
+##Docs
+
+API Docs using Swagger 2.0 can be seen at: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
 ##Test
 
 ```bash
-  make setup-test-db #create test database schema
+  make setup-test-db #create test database schema, run test database migrations
   make test #run project's unit tests
 ```
