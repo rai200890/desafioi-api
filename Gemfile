@@ -9,6 +9,8 @@ gem 'activerecord-import', '~> 0.11.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'kaminari'
 gem 'has_scope'
+gem 'swagger_engine'
+gem 'sass-rails'
 
 group :development, :test do
   gem 'byebug'
