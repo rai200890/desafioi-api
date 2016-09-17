@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   namespace :api do
     namespace :v1 do
       resources :issues, only: [:index, :create, :show]
@@ -8,6 +8,6 @@ Rails.application.routes.draw do
       resources :issue_types, only: :index
       resources :customers, only: [:index, :create]
     end
+    mount SwaggerEngine::Engine, at: "/docs"
   end
-  mount SwaggerEngine::Engine, at: "/api-docs"
 end
