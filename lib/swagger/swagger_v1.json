@@ -1,447 +1,444 @@
 {
-    "swagger": "2.0",
-    "basePath": "/api/v1",
-    "schemes": [
-        "http"
-    ],
-    "info": {
-        "version": "v1",
-        "title": "SAC API",
-        "description": "An API used to register and view issues"
-    },
-    "paths": {
-        "/customers": {
-            "get": {
-                "description": "Endpoint used to list customers",
-                "parameters": [
-                    {
-                        "name": "per",
-                        "in": "query",
-                        "description": "Number of items per page",
-                        "required": false,
-                        "type": "number",
-                        "format": "integer",
-                        "default": 15
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "type": "number",
-                        "format": "integer",
-                        "default": 1
-                    }
-                ],
-                "tags": [
-                    "Customer"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of customers",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issues": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Customer"
-                                    }
-                                },
-                                "meta": {
-                                    "$ref": "#/definitions/Pagination"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Endpoint used to create customers",
-                "parameters": [
-                    {
-                        "name": "customer",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/NewCustomer"
-                        }
-                    }
-                ],
-                "tags": [
-                    "Customer"
-                ],
-                "responses": {
-                    "203": {
-                        "description": "Details of the created customer",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issue": {
-                                    "$ref": "#/definitions/Customer"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "422": {
-                        "description": "Customer's validation errors"
-                    }
-                }
-            }
-        },
-        "/issues": {
-            "get": {
-                "description": "Endpoint used to list issues grouped by state and ordered by creation date in decrescent order",
-                "parameters": [
-                    {
-                        "name": "per",
-                        "in": "query",
-                        "description": "Number of items per page",
-                        "required": false,
-                        "type": "number",
-                        "format": "integer",
-                        "default": 15
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "Page number",
-                        "required": false,
-                        "type": "number",
-                        "format": "integer",
-                        "default": 1
-                    }
-                ],
-                "tags": [
-                    "Issue"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of issues",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issues": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/Issue"
-                                    }
-                                },
-                                "meta": {
-                                    "$ref": "#/definitions/Pagination"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Endpoint used to create issues",
-                "parameters": [
-                    {
-                        "name": "issue",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/NewIssue"
-                        }
-                    }
-                ],
-                "tags": [
-                    "Issue"
-                ],
-                "responses": {
-                    "203": {
-                        "description": "Details of the created issue",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issue": {
-                                    "$ref": "#/definitions/Issue"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "422": {
-                        "description": "Issue's validation errors"
-                    }
-                }
-            }
-        },
-        "/issues/{id}": {
-            "get": {
-                "description": "Endpoint used to retrieve issue details",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Issue Id",
-                        "required": true,
-                        "type": "number",
-                        "format": "integer"
-                    }
-                ],
-                "tags": [
-                    "Issue"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Issue details",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issue": {
-                                    "$ref": "#/definitions/Issue"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            }
-        },
-        "/issue_reasons": {
-            "get": {
-                "description": "Endpoint used to list issue reasons",
-                "tags": [
-                    "IssueReason"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of issue reasons",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issue": {
-                                    "$ref": "#/definitions/IssueReason"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/issue_types": {
-            "get": {
-                "description": "Endpoint used to list issue types",
-                "tags": [
-                    "IssueType"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of issue types",
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "issue": {
-                                    "$ref": "#/definitions/IssueType"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/states": {
-            "get": {
-                "description": "Endpoint used to list states",
-                "tags": [
-                    "State"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of states",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/State"
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "Customer": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Customer ID"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Full customer's name"
-                },
-                "phone": {
-                    "type": "string",
-                    "description": "Customer's phone"
-                },
-                "email": {
-                    "type": "string",
-                    "format": "email",
-                    "description": "Customer's Email"
-                },
-                "id_card_code": {
-                    "type": "string",
-                    "description": "Customer's document id"
-                }
-            }
-        },
-        "NewCustomer": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "Full customer's name"
-                },
-                "phone": {
-                    "type": "string",
-                    "description": "Customer's phone"
-                },
-                "email": {
-                    "type": "string",
-                    "format": "email",
-                    "description": "Customer's Email"
-                },
-                "id_card_code": {
-                    "type": "string",
-                    "description": "Customer's document id"
-                }
-            }
-        },
-        "IssueType": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "ID of Issue Type"
-                },
-                "name": {
-                    "type": "integer",
-                    "description": "Name of the Issue Type"
-                }
-            }
-        },
-        "IssueReason": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "ID of Issue Reason"
-                },
-                "name": {
-                    "type": "integer",
-                    "description": "Name of the Issue Reason"
-                }
-            }
-        },
-        "State": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "ID of State"
-                },
-                "abbreviation": {
-                    "type": "string",
-                    "description": "State abbreviation"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the State"
-                }
-            }
-        },
-        "NewIssue": {
-            "type": "object",
-            "properties": {
-                "customer_id": {
-                    "type": "integer",
-                    "description": "Customer that filed in the issue"
-                },
-                "issue_type_id": {
-                    "type": "integer",
-                    "description": "Type of Issue"
-                },
-                "issue_reason_id": {
-                    "type": "integer",
-                    "description": "Reason of the Issue"
-                },
-                "body": {
-                    "type": "string",
-                    "description": "Reason why the issue was created"
-                },
-                "created_at": {
-                    "type": "string",
-                    "format": "datetime",
-                    "description": "Date when issue was created"
-                }
-            }
-        },
-        "Issue": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "description": "Issue ID"
-                },
-                "customer_id": {
-                    "type": "integer",
-                    "description": "Customer that filed in the issue"
-                },
-                "issue_type_id": {
-                    "type": "integer",
-                    "description": "Type of Issue"
-                },
-                "issue_reason_id": {
-                    "type": "integer",
-                    "description": "Reason of the Issue"
-                },
-                "body": {
-                    "type": "string",
-                    "description": "Reason why the issue was created"
-                },
-                "created_at": {
-                    "type": "string",
-                    "format": "datetime",
-                    "description": "Date when issue was created"
-                }
-            }
-        },
-        "Pagination": {
-            "type": "object",
-            "properties": {
-                "current_page": {
-                    "type": "integer",
-                    "description": "Current page number"
-                },
-                "next_page": {
-                    "type": "integer",
-                    "description": "Next page number"
-                },
-                "prev_page": {
-                    "type": "integer",
-                    "description": "Previous page number"
-                },
-                "total_pages": {
-                    "type": "integer",
-                    "description": "Total number of pages"
-                },
-                "total_count": {
-                    "type": "integer",
-                    "description": "Total number of items"
-                }
-            }
-        }
-    }
+	"swagger": "2.0",
+	"basePath": "/api/v1",
+	"schemes": [
+		"http"
+	],
+	"info": {
+		"version": "v1",
+		"title": "SAC API",
+		"description": "An API used to register and view issues"
+	},
+	"paths": {
+		"/customers": {
+			"get": {
+				"description": "Endpoint used to list customers",
+				"parameters": [{
+					"name": "per",
+					"in": "query",
+					"description": "Number of items per page",
+					"required": false,
+					"type": "integer",
+					"default": 15
+				}, {
+					"name": "page",
+					"in": "query",
+					"description": "Page number",
+					"required": false,
+					"type": "integer",
+					"default": 1
+				}, {
+					"name": "by_id_or_name_or_email_or_phone",
+					"in": "query",
+					"description": "Filter customers by id, name, email or phone",
+					"required": false,
+					"type": "string"
+				}],
+				"tags": [
+					"Customer"
+				],
+				"responses": {
+					"200": {
+						"description": "A list of customers",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issues": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/Customer"
+									}
+								},
+								"meta": {
+									"$ref": "#/definitions/Pagination"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Endpoint used to create customers",
+				"parameters": [{
+					"name": "customer",
+					"in": "body",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NewCustomer"
+					}
+				}],
+				"tags": [
+					"Customer"
+				],
+				"responses": {
+					"203": {
+						"description": "Details of the created customer",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issue": {
+									"$ref": "#/definitions/Customer"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"422": {
+						"description": "Customer's validation errors",
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"/issues": {
+			"get": {
+				"description": "Endpoint used to list issues grouped by state and ordered by creation date in decrescent order",
+				"parameters": [{
+					"name": "per",
+					"in": "query",
+					"description": "Number of items per page",
+					"required": false,
+					"type": "integer",
+					"default": 15
+				}, {
+					"name": "page",
+					"in": "query",
+					"description": "Page number",
+					"required": false,
+					"type": "integer",
+					"default": 1
+				}],
+				"tags": [
+					"Issue"
+				],
+				"responses": {
+					"200": {
+						"description": "A list of issues",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issues": {
+									"type": "array",
+									"items": {
+										"$ref": "#/definitions/Issue"
+									}
+								},
+								"meta": {
+									"$ref": "#/definitions/Pagination"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"description": "Endpoint used to create issues",
+				"parameters": [{
+					"name": "issue",
+					"in": "body",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/NewIssue"
+					}
+				}],
+				"tags": [
+					"Issue"
+				],
+				"responses": {
+					"203": {
+						"description": "Details of the created issue",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issue": {
+									"$ref": "#/definitions/Issue"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"422": {
+						"description": "Issues' validation errors",
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		},
+		"/issues/{id}": {
+			"get": {
+				"description": "Endpoint used to retrieve issue details",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "Issue Id",
+					"required": true,
+					"type": "integer"
+				}],
+				"tags": [
+					"Issue"
+				],
+				"responses": {
+					"200": {
+						"description": "Issue details",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issue": {
+									"$ref": "#/definitions/Issue"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Not found"
+					}
+				}
+			}
+		},
+		"/issue_reasons": {
+			"get": {
+				"description": "Endpoint used to list issue reasons",
+				"tags": [
+					"IssueReason"
+				],
+				"responses": {
+					"200": {
+						"description": "List of issue reasons",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issue": {
+									"$ref": "#/definitions/IssueReason"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/issue_types": {
+			"get": {
+				"description": "Endpoint used to list issue types",
+				"tags": [
+					"IssueType"
+				],
+				"responses": {
+					"200": {
+						"description": "List of issue types",
+						"schema": {
+							"type": "object",
+							"properties": {
+								"issue": {
+									"$ref": "#/definitions/IssueType"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/states": {
+			"get": {
+				"description": "Endpoint used to list states",
+				"tags": [
+					"State"
+				],
+				"responses": {
+					"200": {
+						"description": "A list of states",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/State"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Customer": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Customer ID"
+				},
+				"name": {
+					"type": "string",
+					"description": "Full customer's name"
+				},
+				"phone": {
+					"type": "string",
+					"description": "Customer's phone"
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"description": "Customer's Email"
+				},
+				"id_card_code": {
+					"type": "string",
+					"description": "Customer's document id"
+				}
+			}
+		},
+		"NewCustomer": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Full customer's name"
+				},
+				"phone": {
+					"type": "string",
+					"description": "Customer's phone"
+				},
+				"email": {
+					"type": "string",
+					"format": "email",
+					"description": "Customer's Email"
+				},
+				"id_card_code": {
+					"type": "string",
+					"description": "Customer's document id"
+				}
+			}
+		},
+		"IssueType": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "ID of Issue Type"
+				},
+				"name": {
+					"type": "integer",
+					"description": "Name of the Issue Type"
+				}
+			}
+		},
+		"IssueReason": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "ID of Issue Reason"
+				},
+				"name": {
+					"type": "integer",
+					"description": "Name of the Issue Reason"
+				}
+			}
+		},
+		"State": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "ID of State"
+				},
+				"abbreviation": {
+					"type": "string",
+					"description": "State abbreviation"
+				},
+				"name": {
+					"type": "string",
+					"description": "Name of the State"
+				}
+			}
+		},
+		"NewIssue": {
+			"type": "object",
+			"properties": {
+				"customer_id": {
+					"type": "integer",
+					"description": "Customer that filed in the issue"
+				},
+				"issue_type_id": {
+					"type": "integer",
+					"description": "Type of Issue"
+				},
+				"issue_reason_id": {
+					"type": "integer",
+					"description": "Reason of the Issue"
+				},
+				"body": {
+					"type": "string",
+					"description": "Reason why the issue was created"
+				},
+				"created_at": {
+					"type": "string",
+					"format": "datetime",
+					"description": "Date when issue was created"
+				}
+			}
+		},
+		"Issue": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Issue ID"
+				},
+				"customer_id": {
+					"type": "integer",
+					"description": "Customer that filed in the issue"
+				},
+				"issue_type_id": {
+					"type": "integer",
+					"description": "Type of Issue"
+				},
+				"issue_reason_id": {
+					"type": "integer",
+					"description": "Reason of the Issue"
+				},
+				"body": {
+					"type": "string",
+					"description": "Reason why the issue was created"
+				},
+				"created_at": {
+					"type": "string",
+					"format": "datetime",
+					"description": "Date when issue was created"
+				}
+			}
+		},
+		"Pagination": {
+			"type": "object",
+			"properties": {
+				"current_page": {
+					"type": "integer",
+					"description": "Current page number"
+				},
+				"next_page": {
+					"type": "integer",
+					"description": "Next page number"
+				},
+				"prev_page": {
+					"type": "integer",
+					"description": "Previous page number"
+				},
+				"total_pages": {
+					"type": "integer",
+					"description": "Total number of pages"
+				},
+				"total_count": {
+					"type": "integer",
+					"description": "Total number of items"
+				}
+			}
+		}
+	}
 }
