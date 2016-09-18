@@ -4,9 +4,10 @@ setup-rvm:
 	rvm use 2.3.1@sac-api --create #select ruby version and create gemset
 	gem install bundler
 
-setup-env:
-	cp .env.sample .env #create .env file to load env var in development, make sure to change it before running setup
-
+setup-env:#create .env files to load env var in development and test, make sure to change it before running setup
+	cp .env.sample .env.development
+	cp .env.sample .env.test
+	
 install-os-deps:
 	sudo apt-get update
 	sudo apt-get install -y curl libmysqlclient-dev

@@ -4,8 +4,8 @@ rvm:
 services:
           - mysql
 before_script:
-          - bundle exec rake db:create RAILS_ENV=test
-          - bundle exec rake db:migrate RAILS_ENV=test
+          - bundle exec rails db:create RAILS_ENV=test
+          - bundle exec rails db:migrate RAILS_ENV=test
 addons:
   code_climate:
     repo_token: 3946be5c61b17e50def6bf3b439105445bbfca20f4d0c2bac9f252acb3c2c7b0
