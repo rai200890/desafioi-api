@@ -24,8 +24,26 @@ sudo apt-get install -y mysql-server
 ```bash
   make setup-rvm #install rvm and create gemset
   make install #install project's dependencies in this gemset
-  make setup-env #create .env file to load env var in development, make sure to change it before running setup
-  make setup-db #create database schema, run database migrations in development
+  make setup-env #create .env files to load env vars in development and test
+```
+  Make sure to change the following files before running setup
+  
+  *.env.development*
+  ```
+  DATABASE_URL=mysql2://root:root@localhost/sac_api_development
+  ...
+  ```
+  
+  *.env.test*
+  ```
+  DATABASE_URL=mysql2://root:root@localhost/sac_api_test
+  ...
+  ```
+  
+  Then run
+  
+```bash  
+  make setup-db #create database schema, run database migrations in development and load seed
 ```
 
 ##Run
@@ -36,7 +54,7 @@ sudo apt-get install -y mysql-server
 
 ##Docs
 
-API Docs using Swagger 2.0 can be seen at: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+API Docs using Swagger 2.0 can be seen at: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 
 ##Test
 
