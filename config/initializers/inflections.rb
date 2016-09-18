@@ -6,7 +6,6 @@
 ActiveSupport::Inflector.inflections(:'pt-BR') do |inflect|
   inflect.plural 'Tipo de Chamado', 'Tipos de Chamado'
   inflect.plural 'Motivo de Chamado', 'Motivos de Chamado'
-
 end
 
 # These inflection rules are supported but not enabled by default:
